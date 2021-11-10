@@ -3,8 +3,7 @@ program PRJConta;
 uses
   Vcl.Forms,
   uClasse in 'uClasse.pas' {frmBanco},
-  uClasses in 'uClasses.pas',
-  uBanco in 'uBanco.pas';
+  uClasses in 'uClasses.pas';
 
 {$R *.res}
 

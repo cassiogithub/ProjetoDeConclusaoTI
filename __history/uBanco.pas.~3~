@@ -1,0 +1,47 @@
+unit uBanco;
+
+interface
+
+uses uClasses, sysUtils;
+
+type
+  TBanco = class
+  public
+    Conta: Array of TConta;
+    Cliente: Array of Tcliente;
+    Gerente: array of TGerente;
+    Procedure IncluirConta(aContaAtiva: boolean; aSaldo, aLimite: real;
+      aTipo: string);
+    Constructor Create;
+
+  end;
+
+implementation
+
+{ TBanco }
+
+constructor TBanco.Create;
+var
+  i: Integer;
+begin
+  TConta.Create;
+  setlength(Conta, 0);
+  Tcliente.Create;
+  setlength(Cliente, 0);
+  TGerente.Create;
+  setlength(Gerente, 0);
+end;
+
+procedure TBanco.IncluirConta(aContaAtiva: boolean; aSaldo, aLimite: real;
+  aTipo: string);
+begin
+  setlength(Conta, length(Conta) + 1);
+
+  Conta[length(Conta) - 1] := TConta.Create;
+  Conta[length(Conta) - 1].contaAtiva := aContaAtiva;
+  Conta[length(Conta) - 1].saldo := aSaldo;
+  Conta[length(Conta) - 1].limite := aLimite;
+  Conta[length(Conta) - 1].tipo := aTipo;
+end;
+
+end.

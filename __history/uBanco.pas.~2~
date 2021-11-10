@@ -1,0 +1,17 @@
+unit uBanco;
+
+interface
+
+uses uClasses, sysUtils;
+
+type
+  TBanco = class
+  public
+  Conta : Array of TConta;
+  Cliente: Array of Tcliente;
+  Gerente: array of TGerente
+  end;
+
+implementation
+
+end.
