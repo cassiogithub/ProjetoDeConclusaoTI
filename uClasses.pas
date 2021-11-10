@@ -8,7 +8,7 @@ type
   TConta = class
   private
     FcontaAtiva: boolean;
-    Fsaldo: real;
+    FSaldo: real;
     Flimite: real;
     Ftipo: string;
     procedure SetcontaAtiva(const Value: boolean);
@@ -17,12 +17,12 @@ type
     procedure Settipo(const Value: string);
   public
     function CancelarConta: boolean;
-    procedure deposito(aDeposito);
-    procedure saque(aDeposito);
+    function deposito(aDeposito: real): real;
+    function saque(Saque: real): real;
   published
     property tipo: string read Ftipo write Settipo;
     property limite: real read Flimite write Setlimite;
-    property saldo: real read Fsaldo write Setsaldo;
+    property saldo: real read FSaldo write Setsaldo;
     property contaAtiva: boolean read FcontaAtiva write SetcontaAtiva;
     procedure Historico;
   end;
@@ -67,16 +67,16 @@ type
     procedure Setgerente(const Value: TGerente);
   public
     procedure incluirConta;
-    function imprimirDadosDaConta:string;
+    function imprimirDadosDaConta: string;
   published
     property idCliente: integer read FidCliente write SetidCliente;
     property nome: string read Fnome write Setnome;
     property endereco: string read Fendereco write Setendereco;
     property telefone: integer read Ftelefone write Settelefone;
-    property email:string read Femail write Setemail;
-    property documento:integer read Fdocumento write Setdocumento;
-    property gerente:TGerente read Fgerente write Setgerente;
-    property contas:TConta read Fcontas write Setcontas;
+    property email: string read Femail write Setemail;
+    property documento: integer read Fdocumento write Setdocumento;
+    property gerente: TGerente read Fgerente write Setgerente;
+    property contas: TConta read Fcontas write Setcontas;
 
   end;
 
@@ -87,12 +87,12 @@ implementation
 
 function TConta.CancelarConta: boolean;
 begin
-
+  FcontaAtiva := false;
 end;
 
-procedure TConta.deposito(aDeposito);
+Function TConta.deposito(aDeposito: real): real;
 begin
-
+  FSaldo :=+ aDeposito;
 end;
 
 procedure TConta.Historico;
@@ -100,9 +100,9 @@ begin
 
 end;
 
-procedure TConta.saque(aDeposito);
+function TConta.saque(Saque: real): real;
 begin
-
+  FSaldo:= -Saque;
 end;
 
 procedure TConta.SetcontaAtiva(const Value: boolean);
@@ -117,7 +117,7 @@ end;
 
 procedure TConta.Setsaldo(const Value: real);
 begin
-  Fsaldo := Value;
+  FSaldo := Value;
 end;
 
 procedure TConta.Settipo(const Value: string);
@@ -158,7 +158,13 @@ end;
 
 function TCliente.imprimirDadosDaConta: string;
 begin
-
+  result:=
+  'Código do Cliente: ' + intToStr(FidCliente) + #13#10 +
+  'Nome do cliente' + Fnome + #13#10 +
+  'Endereço do cliente ' + Fendereco+ #13#10 +
+  'Telefone: ' + inttostr(Ftelefone) + #13#10 +
+  'Email: ' +  Femail + #13#10 +
+  'CPF / CNPJ ' + inttostr(Fdocumento);
 end;
 
 procedure TCliente.incluirConta;
