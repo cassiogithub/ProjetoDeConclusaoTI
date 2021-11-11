@@ -43,13 +43,10 @@ implementation
 
 function TCliente.imprimirDadosDaConta: string;
 begin
-  result :=
-    'Código do Cliente: ' + intToStr(FidCliente) + #13#10 +
-    'Nome do cliente' + Fnome + #13#10 +
-    'Endereço do cliente ' + Fendereco + #13#10 +
-    'Telefone: ' + intToStr(Ftelefone) + #13#10 +
-    'Email: ' + Femail + #13#10 +
-    'CPF / CNPJ ' + intToStr(Fdocumento);
+  result := 'Código do Cliente: ' + intToStr(FidCliente) + #13#10 +
+    'Nome do cliente' + Fnome + #13#10 + 'Endereço do cliente ' + Fendereco +
+    #13#10 + 'Telefone: ' + intToStr(Ftelefone) + #13#10 + 'Email: ' + Femail +
+    #13#10 + 'CPF / CNPJ ' + intToStr(Fdocumento);
 end;
 
 procedure TCliente.IncluirConta(aContaAtiva: boolean; aSaldo, aLimite: real;
