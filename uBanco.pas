@@ -2,16 +2,15 @@ unit uBanco;
 
 interface
 
-uses uClasses, sysUtils;
+uses uCliente, uGerente, uConta, sysUtils;
 
 type
   TBanco = class
   public
-    Conta: Array of TConta;
+
     Cliente: Array of Tcliente;
     Gerente: array of TGerente;
-    Procedure IncluirConta(aContaAtiva: boolean; aSaldo, aLimite: real;
-      aTipo: string);
+
     Procedure IncluirCliente(aIdCliente, aTelefone, aDocumento: integer;
       aNome, aEndereco, aEmail: string);
     Procedure IncluirGerente(aNome, aEmail, aEndereco:string; aAgencia, aTelefone:integer);
@@ -50,18 +49,7 @@ begin
   Cliente[length(Cliente) - 1].email := aEmail;
 end;
 
-procedure TBanco.IncluirConta(aContaAtiva: boolean; aSaldo, aLimite: real;
-  aTipo: string);
-begin
-  setlength(Conta, length(Conta) + 1);
 
-  Conta[length(Conta) - 1] := TConta.Create;
-
-  Conta[length(Conta) - 1].contaAtiva := aContaAtiva;
-  Conta[length(Conta) - 1].saldo := aSaldo;
-  Conta[length(Conta) - 1].limite := aLimite;
-  Conta[length(Conta) - 1].tipo := aTipo;
-end;
 
 procedure TBanco.IncluirGerente(aNome, aEmail, aEndereco: string; aAgencia,
   aTelefone: integer);

@@ -102,8 +102,10 @@
             <Form>frmBanco</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="uClasses.pas"/>
         <DCCReference Include="uBanco.pas"/>
+        <DCCReference Include="uCliente.pas"/>
+        <DCCReference Include="uConta.pas"/>
+        <DCCReference Include="uGerente.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

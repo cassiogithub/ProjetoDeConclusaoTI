@@ -11,15 +11,21 @@ type
     FSaldo: real;
     Flimite: real;
     Ftipo: string;
+    FCliente: TCliente;
+    FGerente: TGerente;
     procedure SetcontaAtiva(const Value: boolean);
     procedure Setlimite(const Value: real);
     procedure Setsaldo(const Value: real);
     procedure Settipo(const Value: string);
+    procedure SetCliente(const Value: TCliente);
+    procedure SetGerente(const Value: TGerente);
   public
     function CancelarConta: boolean;
     function deposito(aDeposito: real): real;
     function saque(Saque: real): real;
   published
+  property Gerente: TGerente read FGerente write SetGerente;
+  property Cliente: TCliente read FCliente write SetCliente;
     property tipo: string read Ftipo write Settipo;
     property limite: real read Flimite write Setlimite;
     property saldo: real read FSaldo write Setsaldo;
@@ -66,7 +72,6 @@ type
     procedure Setemail(const Value: string);
     procedure Setgerente(const Value: TGerente);
   public
-    procedure incluirConta;
     function imprimirDadosDaConta: string;
   published
     property idCliente: integer read FidCliente write SetidCliente;
@@ -105,9 +110,19 @@ begin
   FSaldo:= -Saque;
 end;
 
+procedure TConta.SetCliente(const Value: TCliente);
+begin
+  FCliente := Value;
+end;
+
 procedure TConta.SetcontaAtiva(const Value: boolean);
 begin
   FcontaAtiva := Value;
+end;
+
+procedure TConta.SetGerente(const Value: TGerente);
+begin
+  FGerente := Value;
 end;
 
 procedure TConta.Setlimite(const Value: real);
@@ -167,10 +182,6 @@ begin
   'CPF / CNPJ ' + inttostr(Fdocumento);
 end;
 
-procedure TCliente.incluirConta;
-begin
-
-end;
 
 procedure TCliente.Setcontas(const Value: TConta);
 begin
